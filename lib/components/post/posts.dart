@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/components/post/post.model.dart';
+import 'package:my_app/components/post/post_model.dart';
 
 class Posts extends StatefulWidget {
   @override
