@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screen/home.dart';
+import 'package:my_app/components/post/posts.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +15,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: "NotoSansCJKkr",
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Posts(),
     );
   }
 }
