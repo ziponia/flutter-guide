@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/components/post/post_model.dart';
 
-class Posts extends StatefulWidget {
+class PostList extends StatefulWidget {
   @override
   PostsPageState createState() => PostsPageState();
 }
 
-class PostsPageState extends State<Posts> {
+class PostsPageState extends State<PostList> {
   List<Post> posts;
 
   @override
@@ -34,19 +34,22 @@ class PostsPageState extends State<Posts> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "posts",
-      home: Scaffold(
-        appBar: AppBar(title: Text("포스트")),
+    return Container(
+      child: Scaffold(
+        // appBar: AppBar(title: Text("포스트")),
         body: Center(
             child: new ListView.separated(
                 itemBuilder: (context, index) {
                   return PostListItem(
-                    title: "$index 번째 텍스트",
+                    index: index,
+                    title: posts[index].title,
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return new Divider();
+                  print("index: $index");
+                  return new Divider(
+                    height: 4,
+                  );
                 },
                 itemCount: posts.length)),
       ),
@@ -56,27 +59,34 @@ class PostsPageState extends State<Posts> {
 
 class PostListItem extends StatelessWidget {
   final String title;
+  final int index;
 
-  PostListItem({this.title}) : assert(title != null, "title 은 필수 입니다.");
+  PostListItem({this.title, this.index})
+      : assert(title != null, "title 은 필수 입니다.");
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(20),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Column(
-              children: [
-                Container(
-                  child: Text(this.title),
-                )
-              ],
+      // width: double.infinity,
+      margin: EdgeInsets.only(top: this.index == 0 ? 5 : 0),
+      child: SizedBox(
+        child: Container(
+          decoration: BoxDecoration(),
+          child: RaisedButton(
+            elevation: 0,
+            child: Text(
+              this.title,
+              style: TextStyle(
+                fontWeight: FontWeight.w500
+              ),
             ),
-          )
-        ],
+            textTheme: ButtonTextTheme.primary,
+            onPressed: () {
+              // 포스트 디테일 이동
+            },
+          ),
+          height: 50,
+        ),
       ),
     );
   }
