@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/components/post/post_model.dart';
+import 'package:my_app/route/route.dart';
 
 class PostList extends StatefulWidget {
   @override
@@ -83,6 +84,7 @@ class PostListItem extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
             onPressed: () {
               // 포스트 디테일 이동
+              Navigator.pushNamed(context, '/posts/detail');
             },
           ),
           height: 50,
